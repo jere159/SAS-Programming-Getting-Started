@@ -1,0 +1,9 @@
+proc sql;                                          /* 1 */                           
+create table work.carsQuery as                     /* 2 */ 
+    select Make, Model, Type, MSRP,                /* 3 */ 
+           mean(MPG_City, MPG_Highway) as AvgMPG   /* 4 */ 
+              format=4.1 label='Average MPG'  
+    from sashelp.cars                              /* 5 */ 
+    where Origin="USA"                             /* 6 */ 
+    order by Make, MSRP desc;                      /* 7 */ 
+quit;                                              /* 8 */ 
